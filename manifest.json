@@ -1,0 +1,58 @@
+{
+    "name": "Droppy",
+    "id": "droppy",
+    "packaging_format": 1,
+    "description": {
+        "en": "Self-hosted file storage server",
+        "fr": "Serveur de stockage de fichiers auto-hébergé"
+    },
+    "version": "12.0.1~ynh1",
+    "url": "https://github.com/silverwind/droppy",
+    "license": "BSD-2-Clause",
+    "maintainer": {
+        "name": ""
+    },
+    "requirements": {
+        "yunohost": ">= 3.8.1"
+    },
+    "multi_instance": false,
+    "services": [
+        "nginx"
+    ],
+    "arguments": {
+        "install" : [
+            {
+                "name": "domain",
+                "type": "domain",
+                "ask": {
+                    "en": "Choose a domain name for Droppy",
+                    "fr": "Choisissez un nom de domaine pour Droppy"
+                },
+                "example": "domain.org"
+            },
+            {
+                "name": "path",
+                "type": "path",
+                "ask": {
+                    "en": "Choose a path for Droppy",
+                    "fr": "Choisissez un chemin pour Droppy"
+                },
+                "example": "/droppy",
+                "default": "/droppy"
+            },
+            {
+                "name": "is_public",
+                "type": "boolean",
+                "ask": {
+                    "en": "Is it a public site?",
+                    "fr": "Est-ce un site public ?"
+                },
+                "help": {
+                    "en": "If enabled, Droppy will be accessible by people who do not have an account. This can be changed later via the webadmin.",
+                    "fr": "Si cette case est cochée, Droppy sera accessible aux personnes n’ayant pas de compte. Vous pourrez changer ceci plus tard via la webadmin."
+                },
+                "default": true
+            }
+        ]
+    }
+}
