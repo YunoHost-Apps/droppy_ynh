@@ -1,5 +1,5 @@
-SOURCE_URL=https://github.com/silverwind/droppy/archive/12.0.1.tar.gz
-SOURCE_SUM=0491b84b3e82b51d48285ad45eba10314ae68817bd2e4b1bb12e505977188e02
+SOURCE_URL=https://github.com/silverwind/droppy/archive/12.1.0.tar.gz
+SOURCE_SUM=0213a637bdd57f84860b018316623d17c47b50e96eb4d3325a697911f2ce4eca
 SOURCE_SUM_PRG=sha256sum
 SOURCE_FORMAT=tar.gz
 SOURCE_IN_SUBDIR=true

@@ -12,7 +12,7 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 
 Droppy is a self-hosted file storage server with a web interface and capabilities to edit files and view media directly in the browser.
 
-**Shipped version:** 12.0.1
+**Shipped version:** 12.1.0
 
 ## Screenshots
 
