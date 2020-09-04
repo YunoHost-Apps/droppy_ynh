@@ -10,7 +10,7 @@
     "url": "https://github.com/silverwind/droppy",
     "license": "BSD-2-Clause",
     "maintainer": {
-        "name": ""
+        "name": "eric_G"
     },
     "requirements": {
         "yunohost": ">= 3.8.1"
