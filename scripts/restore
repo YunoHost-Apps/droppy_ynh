@@ -96,6 +96,7 @@ systemctl enable $app.service
 #=================================================
 
 ynh_restore_file "/home/yunohost.app/$app"
+chown -R "$app:$app" "/home/yunohost.app/$app"
 
 #=================================================
 # INTEGRATE SERVICE IN YUNOHOST
