@@ -89,21 +89,21 @@ ynh_exec_warn_less ynh_install_nodejs --nodejs_version=$nodejs_version
 ynh_script_progression --message="Restoring the systemd configuration..." --weight=3
 
 ynh_restore_file --origin_path="/etc/systemd/system/$app.service"
-systemctl enable $app.service
+systemctl enable $app.service --quiet
 
 #=================================================
 # RESTORE VARIOUS FILES
 #=================================================
 
 ynh_restore_file "/home/yunohost.app/$app"
-chown -R "$app:$app" "/home/yunohost.app/$app"
+chown -R $app:$app "/home/yunohost.app/$app"
 
 #=================================================
 # INTEGRATE SERVICE IN YUNOHOST
 #=================================================
 ynh_script_progression --message="Integrating service in YunoHost..." --weight=2
 
-yunohost service add $app --description "Self-hosted file storage server" --log "/var/log/$app/$app.log"
+yunohost service add $app --description="Self-hosted file storage server" --log="/var/log/$app/$app.log"
 
 #=================================================
 # START SYSTEMD SERVICE
