@@ -120,7 +120,7 @@ mkdir -p $data_path
 mkdir -p $final_path/config
 
 # Give permission to the datadir
-chown -R $app:$app "$data_path"
+chown -R $app: "$data_path"
 
 #=================================================
 # SETUP SYSTEMD
@@ -152,7 +152,7 @@ ynh_store_file_checksum --file="$final_path/config/config.json"
 ynh_script_progression --message="Securing files and directories..." --weight=1
 
 # Set permissions to app files
-chown -R $app:$app $final_path
+chown -R $app: $final_path
 chmod 755 $final_path
 
 #=================================================

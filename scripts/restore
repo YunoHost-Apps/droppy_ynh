@@ -96,7 +96,7 @@ systemctl enable $app.service --quiet
 #=================================================
 
 ynh_restore_file "/home/yunohost.app/$app"
-chown -R $app:$app "/home/yunohost.app/$app"
+chown -R $app: "/home/yunohost.app/$app"
 
 #=================================================
 # INTEGRATE SERVICE IN YUNOHOST
