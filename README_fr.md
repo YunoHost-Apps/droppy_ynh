@@ -1,7 +1,7 @@
 # Droppy pour YunoHost
 
 [![Niveau d'intégration](https://dash.yunohost.org/integration/droppy.svg)](https://dash.yunohost.org/appci/app/droppy) ![](https://ci-apps.yunohost.org/ci/badges/droppy.status.svg) ![](https://ci-apps.yunohost.org/ci/badges/droppy.maintain.svg)  
-[![Installer Droppy avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.png)](https://install-app.yunohost.org/?app=droppy)
+[![Installer Droppy avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=droppy)
 
 *[Read this readme in english.](./README.md)* 
 
