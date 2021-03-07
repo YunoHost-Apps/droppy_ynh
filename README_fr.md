@@ -26,7 +26,6 @@ Les fichiers partagés sont stockés dans le répertoire suivant : `/home/yunoho
 ## Documentation
 
  * Documentation officielle : https://github.com/silverwind/droppy
- * Documentation YunoHost : 
 
 ## Caractéristiques spécifiques YunoHost
 
