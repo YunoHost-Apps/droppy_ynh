@@ -64,6 +64,14 @@ ynh_script_progression --message="Stopping a systemd service..." --weight=9
 ynh_systemd_action --service_name=$app --action=stop --log_path=systemd
 
 #=================================================
+# CREATE DEDICATED USER
+#=================================================
+ynh_script_progression --message="Making sure dedicated system user exists..." --weight=1
+
+# Create a dedicated user (if not existing)
+ynh_system_user_create --username=$app --home_dir=$final_path
+
+#=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 
@@ -93,14 +101,6 @@ ynh_script_progression --message="Upgrading dependencies..." --weight=2
 
 # Install Nodejs
 ynh_exec_warn_less ynh_install_nodejs --nodejs_version=$nodejs_version
-
-#=================================================
-# CREATE DEDICATED USER
-#=================================================
-ynh_script_progression --message="Making sure dedicated system user exists..." --weight=1
-
-# Create a dedicated user (if not existing)
-ynh_system_user_create --username=$app
 
 #=================================================
 # SPECIFIC UPGRADE
@@ -139,15 +139,7 @@ chown -R $app:$app "$data_path"
 #=================================================
 ynh_script_progression --message="Modifying a config file..." --weight=2
 
-ynh_backup_if_checksum_is_different --file="$final_path/config/config.json"
-
-cp ../conf/config.json.example "$final_path/config/config.json"
-
-# Main config File
-ynh_replace_string --match_string="__PORT__" --replace_string="$port" --target_file="$final_path/config/config.json"
-
-# Recalculate and store the checksum of the file for the next upgrade.
-ynh_store_file_checksum --file="$final_path/config/config.json"
+ynh_add_config --template="../conf/config.json.example" --destination="$final_path/config/config.json"
 
 #=================================================
 # SETUP SYSTEMD
@@ -170,6 +162,7 @@ ynh_script_progression --message="Securing files and directories..." --weight=2
 # Set permissions on app files
 chown -R $app:$app $final_path
 chmod 755 $final_path
+chmod 600 $final_path/config/config.json
 
 #=================================================
 # INTEGRATE SERVICE IN YUNOHOST
