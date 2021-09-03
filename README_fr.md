@@ -32,7 +32,6 @@ Les fichiers partagés sont stockés dans le répertoire suivant : `/home/yunoho
 ## Documentations et ressources
 
 * Site officiel de l'app : https://github.com/silverwind/droppy
-* Documentation officielle utilisateur : https://yunohost.org/apps
 * Documentation officielle de l'admin : https://yunohost.org/packaging_apps
 * Dépôt de code officiel de l'app : https://github.com/silverwind/droppy
 * Documentation YunoHost pour cette app : https://yunohost.org/app_droppy

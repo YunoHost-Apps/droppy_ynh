@@ -36,7 +36,6 @@ Shared files are stored in the following directory: `/home/yunohost.app/droppy/f
 ## Documentation and resources
 
 * Official app website: https://github.com/silverwind/droppy
-* Official user documentation: https://yunohost.org/apps
 * Official admin documentation: https://yunohost.org/packaging_apps
 * Upstream app code repository: https://github.com/silverwind/droppy
 * YunoHost documentation for this app: https://yunohost.org/app_droppy
