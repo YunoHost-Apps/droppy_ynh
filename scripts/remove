@@ -19,6 +19,7 @@ app=$YNH_APP_INSTANCE_NAME
 domain=$(ynh_app_setting_get --app=$app --key=domain)
 port=$(ynh_app_setting_get --app=$app --key=port)
 final_path=$(ynh_app_setting_get --app=$app --key=final_path)
+data_path=$(ynh_app_setting_get --app=$app --key=data_path)
 
 #=================================================
 # STANDARD REMOVE
@@ -59,7 +60,7 @@ ynh_secure_remove --file="$final_path"
 # REMOVE DATADIR DIRECTORY
 #=================================================
 
-ynh_secure_remove --file="/home/yunohost.app/$app"
+ynh_secure_remove --file="$data_path"
 
 #=================================================
 # REMOVE NGINX CONFIGURATION

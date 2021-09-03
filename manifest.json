@@ -8,12 +8,20 @@
     },
     "version": "12.2.0~ynh6",
     "url": "https://github.com/silverwind/droppy",
+    "upstream": {
+        "license": "BSD-2-Clause",
+        "website": "https://github.com/silverwind/droppy",
+        "demo": "https://demo.example.com",
+        "admindoc": "https://yunohost.org/packaging_apps",
+        "userdoc": "https://yunohost.org/apps",
+        "code": "https://github.com/silverwind/droppy"
+    },
     "license": "BSD-2-Clause",
     "maintainer": {
         "name": "eric_G"
     },
     "requirements": {
-        "yunohost": ">= 4.1.7"
+        "yunohost": ">= 4.2.4"
     },
     "multi_instance": false,
     "services": [
