@@ -13,7 +13,6 @@
         "website": "https://github.com/silverwind/droppy",
         "demo": "https://demo.example.com",
         "admindoc": "https://yunohost.org/packaging_apps",
-        "userdoc": "https://yunohost.org/apps",
         "code": "https://github.com/silverwind/droppy"
     },
     "license": "BSD-2-Clause",
