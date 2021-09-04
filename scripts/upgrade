@@ -123,12 +123,6 @@ ynh_script_progression --message="Modifying a config file..." --weight=2
 
 ynh_add_config --template="../conf/config.json.example" --destination="$final_path/config/config.json"
 
-chmod 750 "$final_path"
-chmod -R o-rwx "$final_path"
-chown -R $app:www-data "$final_path"
-chmod 600 $final_path/config/config.json
-chown $app:$app $final_path/config/config.json
-
 #=================================================
 # SETUP SYSTEMD
 #=================================================
@@ -138,6 +132,12 @@ ynh_replace_string --match_string="__ENV_PATH__" --replace_string="$PATH" --targ
 
 # Create a dedicated systemd config
 ynh_add_systemd_config
+
+chmod 750 "$final_path"
+chmod -R o-rwx "$final_path"
+chown -R $app:www-data "$final_path"
+chmod 600 $final_path/config/config.json
+chown $app:$app $final_path/config/config.json
 
 #=================================================
 # INTEGRATE SERVICE IN YUNOHOST
