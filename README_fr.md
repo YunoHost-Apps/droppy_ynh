@@ -16,7 +16,7 @@ Droppy est un serveur de stockage de fichiers auto-hébergé avec une interface 
 
 **Version incluse :** 12.2.0~ynh6
 
-**Démo :** https://demo.example.com
+
 
 ## Captures d'écran
 
@@ -32,7 +32,6 @@ Les fichiers partagés sont stockés dans le répertoire suivant : `/home/yunoho
 ## Documentations et ressources
 
 * Site officiel de l'app : https://github.com/silverwind/droppy
-* Documentation officielle de l'admin : https://yunohost.org/packaging_apps
 * Dépôt de code officiel de l'app : https://github.com/silverwind/droppy
 * Documentation YunoHost pour cette app : https://yunohost.org/app_droppy
 * Signaler un bug : https://github.com/YunoHost-Apps/droppy_ynh/issues
