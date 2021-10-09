@@ -11,8 +11,6 @@
     "upstream": {
         "license": "BSD-2-Clause",
         "website": "https://github.com/silverwind/droppy",
-        "demo": "https://demo.example.com",
-        "admindoc": "https://yunohost.org/packaging_apps",
         "code": "https://github.com/silverwind/droppy"
     },
     "license": "BSD-2-Clause",
@@ -30,8 +28,7 @@
         "install" : [
             {
                 "name": "domain",
-                "type": "domain",
-                "example": "domain.org"
+                "type": "domain"
             },
             {
                 "name": "path",

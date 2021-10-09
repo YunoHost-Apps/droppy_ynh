@@ -24,21 +24,8 @@ port=$(ynh_app_setting_get --app=$app --key=port)
 #=================================================
 # CHECK VERSION
 #=================================================
-ynh_script_progression --message="Checking version..." --weight=1
 
 upgrade_type=$(ynh_check_app_version_changed)
-
-#=================================================
-# ENSURE DOWNWARD COMPATIBILITY
-#=================================================
-ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
-
-# Cleaning legacy permissions
-if ynh_legacy_permissions_exists; then
-	ynh_legacy_permissions_delete_all
-
-	ynh_app_setting_delete --app=$app --key=is_public
-fi
 
 #=================================================
 # BACKUP BEFORE UPGRADE THEN ACTIVE TRAP
@@ -53,6 +40,18 @@ ynh_clean_setup () {
 }
 # Exit if an error occurs during the execution of the script
 ynh_abort_if_errors
+
+#=================================================
+# ENSURE DOWNWARD COMPATIBILITY
+#=================================================
+ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
+
+# Cleaning legacy permissions
+if ynh_legacy_permissions_exists; then
+	ynh_legacy_permissions_delete_all
+
+	ynh_app_setting_delete --app=$app --key=is_public
+fi
 
 #=================================================
 # STANDARD UPGRADE STEPS
@@ -79,11 +78,16 @@ if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
 	ynh_script_progression --message="Upgrading source files..." --weight=10
 
+	cp -a "$final_path/config/config.json" "$tmpdir/config.json"
 	# Remove the app directory securely
 	ynh_secure_remove --file=$final_path
 
 	# Download, check integrity, uncompress and patch the source from app.src
 	ynh_setup_source --dest_dir=$final_path
+	cp -a "$tmpdir/config.json" "$final_path/config/config.json"
+
+	# Remove the tmp directory securely
+	ynh_secure_remove --file="$tmpdir"
 fi
 
 #=================================================
@@ -117,13 +121,6 @@ then
 fi
 
 #=================================================
-# MODIFY A CONFIG FILE
-#=================================================
-ynh_script_progression --message="Modifying a config file..." --weight=2
-
-ynh_add_config --template="../conf/config.json.example" --destination="$final_path/config/config.json"
-
-#=================================================
 # SETUP SYSTEMD
 #=================================================
 ynh_script_progression --message="Configuring a systemd service..." --weight=2
@@ -136,8 +133,6 @@ ynh_add_systemd_config
 chmod 750 "$final_path"
 chmod -R o-rwx "$final_path"
 chown -R $app:www-data "$final_path"
-chmod 600 $final_path/config/config.json
-chown $app:$app $final_path/config/config.json
 
 #=================================================
 # INTEGRATE SERVICE IN YUNOHOST
