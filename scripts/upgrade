@@ -20,6 +20,7 @@ domain=$(ynh_app_setting_get --app=$app --key=domain)
 path_url=$(ynh_app_setting_get --app=$app --key=path)
 final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 port=$(ynh_app_setting_get --app=$app --key=port)
+data_path=$(ynh_app_setting_get --app=$app --key=data_path)
 
 #=================================================
 # CHECK VERSION
@@ -27,18 +28,6 @@ port=$(ynh_app_setting_get --app=$app --key=port)
 ynh_script_progression --message="Checking version..." --weight=1
 
 upgrade_type=$(ynh_check_app_version_changed)
-
-#=================================================
-# ENSURE DOWNWARD COMPATIBILITY
-#=================================================
-ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
-
-# Cleaning legacy permissions
-if ynh_legacy_permissions_exists; then
-	ynh_legacy_permissions_delete_all
-
-	ynh_app_setting_delete --app=$app --key=is_public
-fi
 
 #=================================================
 # BACKUP BEFORE UPGRADE THEN ACTIVE TRAP
@@ -53,6 +42,18 @@ ynh_clean_setup () {
 }
 # Exit if an error occurs during the execution of the script
 ynh_abort_if_errors
+
+#=================================================
+# ENSURE DOWNWARD COMPATIBILITY
+#=================================================
+ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
+
+# Cleaning legacy permissions
+if ynh_legacy_permissions_exists; then
+	ynh_legacy_permissions_delete_all
+
+	ynh_app_setting_delete --app=$app --key=is_public
+fi
 
 #=================================================
 # STANDARD UPGRADE STEPS
@@ -86,6 +87,10 @@ then
 	ynh_setup_source --dest_dir=$final_path
 fi
 
+chmod 750 "$final_path"
+chmod -R o-rwx "$final_path"
+chown -R $app:www-data "$final_path"
+
 #=================================================
 # NGINX CONFIGURATION
 #=================================================
@@ -107,23 +112,21 @@ ynh_exec_warn_less ynh_install_nodejs --nodejs_version=$nodejs_version
 #==============================================
 # INSTALL DROPPY
 #==============================================
+
 if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
 	ynh_script_progression --message="Building $app... (this will take some time and resources!)" --weight=25
 
-	pushd "$final_path" || ynh_die
+	pushd "$final_path"
 		ynh_use_nodejs
 		ynh_exec_warn_less ynh_npm install
-	popd || ynh_die
+	popd
 fi
 
 #=================================================
 # CREATE DIRECTORY FOR DATA AND CONFIG
 #=================================================
 ynh_script_progression --message="Creating the data directory..." --weight=1
-
-# Define app's data directory
-data_path="/home/yunohost.app/${app}"
 
 # Create datadir folder
 mkdir -p $data_path
@@ -132,7 +135,9 @@ mkdir -p $data_path
 mkdir -p $final_path/config
 
 # Give permission to the datadir
-chown -R $app:$app "$data_path"
+chmod 750 "$data_path"
+chmod -R o-rwx "$data_path"
+chown -R $app:www-data "$data_path"
 
 #=================================================
 # MODIFY A CONFIG FILE
@@ -140,29 +145,25 @@ chown -R $app:$app "$data_path"
 ynh_script_progression --message="Modifying a config file..." --weight=2
 
 ynh_add_config --template="../conf/config.json.example" --destination="$final_path/config/config.json"
+chmod 600 $final_path/config/config.json
 
 #=================================================
 # SETUP SYSTEMD
 #=================================================
 ynh_script_progression --message="Configuring a systemd service..." --weight=2
 
-ynh_replace_string --match_string="__ENV_PATH__" --replace_string="$PATH"    --target_file="../conf/systemd.service"
-ynh_replace_string --match_string="__YNH_NPM__"  --replace_string="$ynh_npm" --target_file="../conf/systemd.service"
+ynh_replace_string --match_string="__ENV_PATH__" --replace_string="$PATH" --target_file="../conf/systemd.service"
 
 # Create a dedicated systemd config
 ynh_add_systemd_config
 
 #=================================================
-# GENERIC FINALIZATION
+# SETUP LOGROTATE
 #=================================================
-# SECURE FILES AND DIRECTORIES
-#=================================================
-ynh_script_progression --message="Securing files and directories..." --weight=2
+ynh_script_progression --message="Upgrading logrotate configuration..." --weight=1
 
-# Set permissions on app files
-chown -R $app:$app $final_path
-chmod 755 $final_path
-chmod 600 $final_path/config/config.json
+# Use logrotate to manage app-specific logfile(s)
+ynh_use_logrotate --non-append
 
 #=================================================
 # INTEGRATE SERVICE IN YUNOHOST
