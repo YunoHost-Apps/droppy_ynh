@@ -62,6 +62,12 @@ ynh_backup --src_path="$data_path" --is_big
 ynh_backup --src_path="/etc/systemd/system/$app.service"
 
 #=================================================
+# BACKUP LOGROTATE
+#=================================================
+
+ynh_backup --src_path="/etc/logrotate.d/$app"
+
+#=================================================
 # END OF SCRIPT
 #=================================================
 
