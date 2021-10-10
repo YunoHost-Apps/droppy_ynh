@@ -78,19 +78,11 @@ if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
 	ynh_script_progression --message="Upgrading source files..." --weight=10
 
-	# Create a temporary directory
-	tmpdir="$(mktemp -d)"
-
-	cp -a "$final_path/config/config.json" "$tmpdir/config.json"
 	# Remove the app directory securely
 	ynh_secure_remove --file=$final_path
 
 	# Download, check integrity, uncompress and patch the source from app.src
 	ynh_setup_source --dest_dir=$final_path
-	cp -a "$tmpdir/config.json" "$final_path/config/config.json"
-
-	# Remove the tmp directory securely
-	ynh_secure_remove --file="$tmpdir"
 fi
 
 #=================================================
@@ -136,6 +128,14 @@ ynh_add_systemd_config
 chmod 750 "$final_path"
 chmod -R o-rwx "$final_path"
 chown -R $app:www-data "$final_path"
+
+#=================================================
+# MODIFY A CONFIG FILE
+#=================================================
+ynh_script_progression --message="Modifying a config file..." --weight=2
+
+ynh_add_config --template="../conf/config.json.example" --destination="$final_path/config/config.json"
+chmod 600 $final_path/config/config.json
 
 #=================================================
 # INTEGRATE SERVICE IN YUNOHOST
