@@ -119,8 +119,6 @@ ynh_app_setting_set --app=$app --key=data_path --value=$data_path
 
 # Create datadir folder
 mkdir -p $data_path
-# Create config folder
-mkdir -p $final_path/config
 
 # Give permission to the datadir
 chmod 750 "$data_path"
@@ -132,7 +130,7 @@ chown -R $app:www-data "$data_path"
 #=================================================
 ynh_script_progression --message="Configuring a systemd service..." --weight=1
 
-ynh_replace_string --match_string="__ENV_PATH__" --replace_string="$PATH"    --target_file="../conf/systemd.service"
+ynh_replace_string --match_string="__ENV_PATH__" --replace_string="$PATH" --target_file="../conf/systemd.service"
 
 ynh_add_systemd_config
 
@@ -141,7 +139,11 @@ ynh_add_systemd_config
 #=================================================
 ynh_script_progression --message="Modifying a config file..." --weight=1
 
+# Create config folder
+mkdir -p $final_path/config
+
 ynh_add_config --template="../conf/config.json.example" --destination="$final_path/config/config.json"
+
 chmod 600 "$final_path/config/config.json"
 chown $app:$app "$final_path/config/config.json"
 

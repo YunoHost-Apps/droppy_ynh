@@ -127,6 +127,7 @@ fi
 ynh_script_progression --message="Modifying a config file..." --weight=2
 
 ynh_add_config --template="../conf/config.json.example" --destination="$final_path/config/config.json"
+
 chmod 600 "$final_path/config/config.json"
 chown $app:$app "$final_path/config/config.json"
 
@@ -135,7 +136,7 @@ chown $app:$app "$final_path/config/config.json"
 #=================================================
 ynh_script_progression --message="Configuring a systemd service..." --weight=2
 
-ynh_replace_string --match_string="__ENV_PATH__" --replace_string="$PATH"    --target_file="../conf/systemd.service"
+ynh_replace_string --match_string="__ENV_PATH__" --replace_string="$PATH" --target_file="../conf/systemd.service"
 
 # Create a dedicated systemd config
 ynh_add_systemd_config
