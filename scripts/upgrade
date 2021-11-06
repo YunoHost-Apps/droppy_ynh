@@ -79,10 +79,10 @@ then
 	ynh_script_progression --message="Upgrading source files..." --weight=10
 
 	# Remove the app directory securely
-	ynh_secure_remove --file=$final_path
+	#ynh_secure_remove --file=$final_path
 
 	# Download, check integrity, uncompress and patch the source from app.src
-	ynh_setup_source --dest_dir=$final_path
+	ynh_setup_source --dest_dir=$final_path --keep="$final_path/config/config.json"
 fi
 
 #=================================================
@@ -120,12 +120,12 @@ fi
 #=================================================
 # MODIFY A CONFIG FILE
 #=================================================
-ynh_script_progression --message="Modifying a config file..." --weight=2
+#ynh_script_progression --message="Modifying a config file..." --weight=2
 
-ynh_add_config --template="../conf/config.json.example" --destination="$final_path/config/config.json"
+# ynh_add_config --template="../conf/config.json.example" --destination="$final_path/config/config.json"
 
-chmod 600 "$final_path/config/config.json"
-chown $app:$app "$final_path/config/config.json"
+# chmod 600 "$final_path/config/config.json"
+# chown $app:$app "$final_path/config/config.json"
 
 chmod 755 "$final_path"
 chmod -R o-rwx "$final_path"
