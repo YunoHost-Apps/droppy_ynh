@@ -13,7 +13,7 @@ Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour
 
 Serveur de stockage de fichiers auto-hébergé
 
-**Version incluse :** 12.2.0~ynh6
+**Version incluse :** 12.2.0~ynh7
 
 
 
