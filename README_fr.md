@@ -3,49 +3,36 @@
 [![Niveau d'intégration](https://dash.yunohost.org/integration/droppy.svg)](https://dash.yunohost.org/appci/app/droppy) ![](https://ci-apps.yunohost.org/ci/badges/droppy.status.svg) ![](https://ci-apps.yunohost.org/ci/badges/droppy.maintain.svg)  
 [![Installer Droppy avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=droppy)
 
-*[Read this readme in english.](./README.md)* 
+*[Read this readme in english.](./README.md)*
+*[Lire ce readme en français.](./README_fr.md)*
 
-> *Ce package vous permet d'installer Droppy rapidement et simplement sur un serveur YunoHost.  
-Si vous n'avez pas YunoHost, consultez [le guide](https://yunohost.org/#/install) pour apprendre comment l'installer.*
+> *Ce package vous permet d'installer Droppy rapidement et simplement sur un serveur YunoHost.
+Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour savoir comment l'installer et en profiter.*
 
 ## Vue d'ensemble
 
-Droppy est un serveur de stockage de fichiers auto-hébergé avec une interface Web et des capacités pour éditer des fichiers et afficher des médias directement dans le navigateur.
+Serveur de stockage de fichiers auto-hébergé
 
-**Version incluse :** 12.2.0
+**Version incluse :** 12.2.0~ynh6
+
+
 
 ## Captures d'écran
 
-![](https://i.imgur.com/Ziv79rJ.png)
+![](./doc/screenshots/screenshot.png)
+
+## Avertissements / informations importantes
 
 ## Configuration
 
 Comment configurer cette application : un fichier de configuration `/var/www/droppy/config/config.json` en SSH.  
 Les fichiers partagés sont stockés dans le répertoire suivant : `/home/yunohost.app/droppy/files/`
 
-## Documentation
+## Documentations et ressources
 
- * Documentation officielle : https://github.com/silverwind/droppy
-
-## Caractéristiques spécifiques YunoHost
-
-#### Support multi-utilisateur
-
-* L'authentification LDAP est-elle prise en charge ? **Non**
-* L'application peut-elle être utilisée par plusieurs utilisateurs ? **Oui**
-
-#### Architectures supportées
-
-* x86-64 - [![Build Status](https://ci-apps.yunohost.org/ci/logs/droppy%20%28Apps%29.svg)](https://ci-apps.yunohost.org/ci/apps/droppy/)
-* ARMv8-A - [![Build Status](https://ci-apps-arm.yunohost.org/ci/logs/droppy%20%28Apps%29.svg)](https://ci-apps-arm.yunohost.org/ci/apps/droppy/)
-
-## Liens
-
- * Signaler un bug : https://github.com/YunoHost-Apps/droppy_ynh/issues
- * Dépôt de l'application principale : https://github.com/silverwind/droppy
- * Site web YunoHost : https://yunohost.org/
-
----
+* Dépôt de code officiel de l'app : https://github.com/silverwind/droppy
+* Documentation YunoHost pour cette app : https://yunohost.org/app_droppy
+* Signaler un bug : https://github.com/YunoHost-Apps/droppy_ynh/issues
 
 ## Informations pour les développeurs
 
@@ -57,3 +44,5 @@ sudo yunohost app install https://github.com/YunoHost-Apps/droppy_ynh/tree/testi
 ou
 sudo yunohost app upgrade droppy -u https://github.com/YunoHost-Apps/droppy_ynh/tree/testing --debug
 ```
+
+**Plus d'infos sur le packaging d'applications :** https://yunohost.org/packaging_apps
