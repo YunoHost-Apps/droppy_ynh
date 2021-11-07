@@ -6,7 +6,7 @@
         "en": "Self-hosted file storage server",
         "fr": "Serveur de stockage de fichiers auto-hébergé"
     },
-    "version": "12.2.0~ynh6",
+    "version": "12.2.0~ynh7",
     "url": "https://github.com/silverwind/droppy",
     "upstream": {
         "license": "BSD-2-Clause",
