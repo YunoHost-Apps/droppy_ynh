@@ -28,6 +28,7 @@ app=$YNH_APP_INSTANCE_NAME
 
 final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 domain=$(ynh_app_setting_get --app=$app --key=domain)
+data_path=$(ynh_app_setting_get --app=$app --key=data_path)
 
 #=================================================
 # DECLARE DATA AND CONF FILES TO BACKUP
@@ -47,12 +48,18 @@ ynh_backup --src_path="$final_path"
 ynh_backup --src_path="/etc/nginx/conf.d/$domain.d/$app.conf"
 
 #=================================================
-# SPECIFIC BACKUP
-#=================================================
-# BACKUP DATADIR DIRECTORY
+# BACKUP THE DATA DIR
 #=================================================
 
-ynh_backup --src_path="/home/yunohost.app/$app"
+ynh_backup --src_path="$data_path" --is_big
+
+#=================================================
+# SPECIFIC BACKUP
+#=================================================
+# BACKUP LOGROTATE
+#=================================================
+
+ynh_backup --src_path="/etc/logrotate.d/$app"
 
 #=================================================
 # BACKUP SYSTEMD

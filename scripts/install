@@ -68,6 +68,14 @@ ynh_script_progression --message="Installing dependencies..." --weight=2
 ynh_exec_warn_less ynh_install_nodejs --nodejs_version=$nodejs_version
 
 #=================================================
+# CREATE DEDICATED USER
+#=================================================
+ynh_script_progression --message="Configuring system user..." --weight=1
+
+# Create a system user
+ynh_system_user_create --username=$app --home_dir=$final_path
+
+#=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 ynh_script_progression --message="Setting up source files..." --weight=5
@@ -85,24 +93,16 @@ ynh_script_progression --message="Configuring NGINX web server..." --weight=3
 ynh_add_nginx_config
 
 #=================================================
-# CREATE DEDICATED USER
-#=================================================
-ynh_script_progression --message="Configuring system user..." --weight=1
-
-# Create a system user
-ynh_system_user_create --username=$app --home_dir=$final_path
-
-#=================================================
 # SPECIFIC SETUP
 #==============================================
 # INSTALL DROPPY
 #==============================================
 ynh_script_progression --message="Building $app... (this will take some time and resources!)" --weight=26
 
-pushd "$final_path" || ynh_die
+pushd "$final_path"
 	ynh_use_nodejs
-	ynh_exec_warn_less ynh_npm install
-popd || ynh_die
+	ynh_exec_warn_less $ynh_npm install
+popd
 
 #=================================================
 # CREATE DIRECTORY FOR DATA AND CONFIG
@@ -110,24 +110,23 @@ popd || ynh_die
 ynh_script_progression --message="Creating the data directory..." --weight=1
 
 # Define app's data directory
-data_path="/home/yunohost.app/${app}"
+data_path=/home/yunohost.app/$app
+ynh_app_setting_set --app=$app --key=data_path --value=$data_path
 
 # Create datadir folder
 mkdir -p $data_path
 
-# Create config folder
-mkdir -p $final_path/config
-
 # Give permission to the datadir
-chown -R $app: "$data_path"
+chmod 750 "$data_path"
+chmod -R o-rwx "$data_path"
+chown -R $app:www-data "$data_path"
 
 #=================================================
 # SETUP SYSTEMD
 #=================================================
 ynh_script_progression --message="Configuring a systemd service..." --weight=1
 
-ynh_replace_string --match_string="__ENV_PATH__" --replace_string="$PATH"    --target_file="../conf/systemd.service"
-ynh_replace_string --match_string="__YNH_NPM__"  --replace_string="$ynh_npm" --target_file="../conf/systemd.service"
+ynh_replace_string --match_string="__ENV_PATH__" --replace_string="$PATH" --target_file="../conf/systemd.service"
 
 ynh_add_systemd_config
 
@@ -136,19 +135,27 @@ ynh_add_systemd_config
 #=================================================
 ynh_script_progression --message="Modifying a config file..." --weight=1
 
+# Create config folder
+mkdir -p $final_path/config
+
 ynh_add_config --template="../conf/config.json.example" --destination="$final_path/config/config.json"
+
+chmod 600 "$final_path/config/config.json"
+chown $app:$app "$final_path/config/config.json"
+
+chmod 755 "$final_path"
+chmod -R o-rwx "$final_path"
+chown -R $app: "$final_path"
 
 #=================================================
 # GENERIC FINALIZATION
 #=================================================
-# SECURE FILES AND DIRECTORIES
+# SETUP LOGROTATE
 #=================================================
-ynh_script_progression --message="Securing files and directories..." --weight=1
+ynh_script_progression --message="Configuring log rotation..." --weight=1
 
-# Set permissions to app files
-chown -R $app: $final_path
-chmod 755 $final_path
-chmod 600 $final_path/config/config.json
+# Use logrotate to manage application logfile(s)
+ynh_use_logrotate
 
 #=================================================
 # INTEGRATE SERVICE IN YUNOHOST
