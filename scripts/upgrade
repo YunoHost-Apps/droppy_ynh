@@ -113,7 +113,7 @@ then
 
 	pushd "$final_path"
 		ynh_use_nodejs
-		ynh_exec_warn_less ynh_npm install
+		ynh_exec_warn_less $ynh_npm install
 	popd
 fi
 
