@@ -17,7 +17,7 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 
 Self-hosted file storage server
 
-**Shipped version:** 12.2.0~ynh7
+**Shipped version:** 12.2.0~ynh8
 
 
 
