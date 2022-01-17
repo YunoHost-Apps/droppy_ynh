@@ -28,6 +28,8 @@ Droppy is a self-hosted file storage server with a web interface and capabilitie
 
 ## Disclaimers / important information
 
+Development of Droppy has been abandoned by its author, and its repository has been archived. Expect no future updates nor security fixes.
+
 ## Configuration
 
 How to configure this app: a JSON configuration file with SSH. `/var/www/droppy/config/config.json`.  
