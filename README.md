@@ -15,7 +15,8 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 
 ## Overview
 
-Self-hosted file storage server
+Droppy is a self-hosted file storage server with a web interface and capabilities to edit files and view media directly in the browser.
+
 
 **Shipped version:** 12.2.0~ynh8
 
@@ -26,6 +27,8 @@ Self-hosted file storage server
 ![](./doc/screenshots/screenshot.png)
 
 ## Disclaimers / important information
+
+Development of Droppy has been abandoned by its author, and its repository has been archived. Expect no future updates nor security fixes.
 
 ## Configuration
 
