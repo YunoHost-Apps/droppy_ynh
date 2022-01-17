@@ -11,7 +11,8 @@ Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour
 
 ## Vue d'ensemble
 
-Serveur de stockage de fichiers auto-hébergé
+Droppy is a self-hosted file storage server with a web interface and capabilities to edit files and view media directly in the browser.
+
 
 **Version incluse :** 12.2.0~ynh8
 
