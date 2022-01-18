@@ -11,9 +11,10 @@ Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour
 
 ## Vue d'ensemble
 
-Serveur de stockage de fichiers auto-hébergé
+Droppy est un serveur de stockage de fichiers auto-hébergé avec une interface Web et des capacités pour éditer des fichiers et afficher des médias directement dans le navigateur.
 
-**Version incluse :** 12.2.0~ynh8
+
+**Version incluse :** 12.2.0~ynh9
 
 
 
@@ -22,6 +23,8 @@ Serveur de stockage de fichiers auto-hébergé
 ![](./doc/screenshots/screenshot.png)
 
 ## Avertissements / informations importantes
+
+Le développement de Droppy a été abandonné par son auteur, et son dépôt de code a été archivé. N'attendez pas de future mise à jour, ni correctifs de sécurité.
 
 ## Configuration
 
