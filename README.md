@@ -5,7 +5,7 @@ It shall NOT be edited by hand.
 
 # Droppy for YunoHost
 
-[![Integration level](https://dash.yunohost.org/integration/droppy.svg)](https://dash.yunohost.org/appci/app/droppy) ![](https://ci-apps.yunohost.org/ci/badges/droppy.status.svg) ![](https://ci-apps.yunohost.org/ci/badges/droppy.maintain.svg)  
+[![Integration level](https://dash.yunohost.org/integration/droppy.svg)](https://dash.yunohost.org/appci/app/droppy) ![Working status](https://ci-apps.yunohost.org/ci/badges/droppy.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/droppy.maintain.svg)  
 [![Install Droppy with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=droppy)
 
 *[Lire ce readme en français.](./README_fr.md)*
@@ -20,11 +20,9 @@ Droppy is a self-hosted file storage server with a web interface and capabilitie
 
 **Shipped version:** 12.2.0~ynh10
 
-
-
 ## Screenshots
 
-![](./doc/screenshots/screenshot.png)
+![Screenshot of Droppy](./doc/screenshots/screenshot.png)
 
 ## Disclaimers / important information
 
@@ -38,19 +36,20 @@ Shared files are stored in the following directory: `/home/yunohost.app/droppy/f
 
 ## Documentation and resources
 
-* Upstream app code repository: https://github.com/silverwind/droppy
-* YunoHost documentation for this app: https://yunohost.org/app_droppy
-* Report a bug: https://github.com/YunoHost-Apps/droppy_ynh/issues
+* Upstream app code repository: <https://github.com/silverwind/droppy>
+* YunoHost documentation for this app: <https://yunohost.org/app_droppy>
+* Report a bug: <https://github.com/YunoHost-Apps/droppy_ynh/issues>
 
 ## Developer info
 
 Please send your pull request to the [testing branch](https://github.com/YunoHost-Apps/droppy_ynh/tree/testing).
 
 To try the testing branch, please proceed like that.
-```
+
+``` bash
 sudo yunohost app install https://github.com/YunoHost-Apps/droppy_ynh/tree/testing --debug
 or
 sudo yunohost app upgrade droppy -u https://github.com/YunoHost-Apps/droppy_ynh/tree/testing --debug
 ```
 
-**More info regarding app packaging:** https://yunohost.org/packaging_apps
+**More info regarding app packaging:** <https://yunohost.org/packaging_apps>
