@@ -56,7 +56,7 @@ ynh_app_setting_set --app=$app --key=path --value=$path_url
 ynh_script_progression --message="Finding an available port..." --weight=2
 
 # Find an available port
-port=$(ynh_find_port --port=8989)
+port=$(ynh_find_port --port=8095)
 ynh_app_setting_set --app=$app --key=port --value=$port
 
 #=================================================
@@ -64,7 +64,6 @@ ynh_app_setting_set --app=$app --key=port --value=$port
 #=================================================
 ynh_script_progression --message="Installing dependencies..." --weight=2
 
-# Install Nodejs
 ynh_exec_warn_less ynh_install_nodejs --nodejs_version=$nodejs_version
 
 #=================================================
@@ -73,7 +72,7 @@ ynh_exec_warn_less ynh_install_nodejs --nodejs_version=$nodejs_version
 ynh_script_progression --message="Configuring system user..." --weight=1
 
 # Create a system user
-ynh_system_user_create --username=$app --home_dir=$final_path
+ynh_system_user_create --username=$app --home_dir="$final_path"
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
@@ -82,7 +81,12 @@ ynh_script_progression --message="Setting up source files..." --weight=5
 
 ynh_app_setting_set --app=$app --key=final_path --value=$final_path
 # Download, check integrity, uncompress and patch the source from app.src
-ynh_setup_source --dest_dir=$final_path
+ynh_setup_source --dest_dir="$final_path"
+mkdir -p $final_path/config
+
+chmod 750 "$final_path"
+chmod -R o-rwx "$final_path"
+chown -R $app:$app "$final_path"
 
 #=================================================
 # NGINX CONFIGURATION
@@ -94,57 +98,47 @@ ynh_add_nginx_config
 
 #=================================================
 # SPECIFIC SETUP
-#==============================================
-# INSTALL DROPPY
-#==============================================
-ynh_script_progression --message="Building $app... (this will take some time and resources!)" --weight=26
+#=================================================
+# BUILD APP
+#=================================================
+ynh_script_progression --message="Building app... (this will take some time and resources!)" --weight=26
 
 pushd "$final_path"
 	ynh_use_nodejs
-	ynh_exec_warn_less $ynh_npm install
+	ynh_exec_warn_less ynh_exec_as $app $ynh_node_load_PATH $ynh_npm install
 popd
 
 #=================================================
-# CREATE DIRECTORY FOR DATA AND CONFIG
+# CREATE DATA DIRECTORY
 #=================================================
-ynh_script_progression --message="Creating the data directory..." --weight=1
+ynh_script_progression --message="Creating a data directory..." --weight=1
 
-# Define app's data directory
 data_path=/home/yunohost.app/$app
 ynh_app_setting_set --app=$app --key=data_path --value=$data_path
 
-# Create datadir folder
 mkdir -p $data_path
 
-# Give permission to the datadir
 chmod 750 "$data_path"
 chmod -R o-rwx "$data_path"
-chown -R $app:www-data "$data_path"
+chown -R $app:$app "$data_path"
 
 #=================================================
-# SETUP SYSTEMD
+# ADD A CONFIGURATION
 #=================================================
-ynh_script_progression --message="Configuring a systemd service..." --weight=1
-
-env_path="$PATH"
-ynh_add_systemd_config
-
-#=================================================
-# MODIFY A CONFIG FILE
-#=================================================
-ynh_script_progression --message="Modifying a config file..." --weight=1
-
-# Create config folder
-mkdir -p $final_path/config
+ynh_script_progression --message="Adding a configuration file..." --weight=1
 
 ynh_add_config --template="../conf/config.json.example" --destination="$final_path/config/config.json"
 
 chmod 600 "$final_path/config/config.json"
 chown $app:$app "$final_path/config/config.json"
 
-chmod 755 "$final_path"
-chmod -R o-rwx "$final_path"
-chown -R $app: "$final_path"
+#=================================================
+# SETUP SYSTEMD
+#=================================================
+ynh_script_progression --message="Configuring a systemd service..." --weight=1
+
+# Create a dedicated systemd config
+ynh_add_systemd_config
 
 #=================================================
 # GENERIC FINALIZATION
@@ -176,9 +170,11 @@ ynh_systemd_action --service_name=$app --action=start --log_path=systemd --line_
 #=================================================
 ynh_script_progression --message="Configuring permissions..." --weight=1
 
-# Make app public if necessary or protect it
+# Make app public if necessary
 if [ $is_public -eq 1 ]
 then
+	# Everyone can access the app.
+	# The "main" permission is automatically created before the install script.
 	ynh_permission_update --permission="main" --add="visitors"
 fi
 
