@@ -3,11 +3,12 @@ Description=Droppy: self-hosted file storage server
 After=network.target
 
 [Service]
+Type=simple
 User=__APP__
 Group=__APP__
-WorkingDirectory=__FINALPATH__
+WorkingDirectory=__FINALPATH__/
 Environment="NODE_ENV=production"
-Environment="PATH=__ENV_PATH__"
+Environment="__YNH_NODE_LOAD_PATH__"
 ExecStart= __FINALPATH__/droppy.js start -c __FINALPATH__/config -f /home/yunohost.app/__APP__/files
 AmbientCapabilities=CAP_NET_BIND_SERVICE
 Restart=always
