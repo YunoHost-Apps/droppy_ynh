@@ -10,7 +10,8 @@
     "url": "https://github.com/silverwind/droppy",
     "upstream": {
         "license": "BSD-2-Clause",
-        "code": "https://github.com/silverwind/droppy"
+        "code": "https://github.com/silverwind/droppy",
+        "cpe": "cpe:2.3:a:droppy_project:droppy"
     },
     "license": "BSD-2-Clause",
     "maintainer": {
