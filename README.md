@@ -20,6 +20,7 @@ Droppy is a self-hosted file storage server with a web interface and capabilitie
 
 **Shipped version:** 12.2.0~ynh10
 
+
 ## Screenshots
 
 ![Screenshot of Droppy](./doc/screenshots/screenshot.png)
