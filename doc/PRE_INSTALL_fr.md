@@ -1,0 +1,1 @@
+Le développement de Droppy a été abandonné par son auteur, et son dépôt a été archivé. Ne vous attendez à aucune mise à jour future ni correctif de sécurité.

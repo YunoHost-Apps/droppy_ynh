@@ -5,7 +5,8 @@ It shall NOT be edited by hand.
 
 # Droppy for YunoHost
 
-[![Integration level](https://dash.yunohost.org/integration/droppy.svg)](https://dash.yunohost.org/appci/app/droppy) ![Working status](https://ci-apps.yunohost.org/ci/badges/droppy.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/droppy.maintain.svg)  
+[![Integration level](https://dash.yunohost.org/integration/droppy.svg)](https://dash.yunohost.org/appci/app/droppy) ![Working status](https://ci-apps.yunohost.org/ci/badges/droppy.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/droppy.maintain.svg)
+
 [![Install Droppy with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=droppy)
 
 *[Lire ce readme en français.](./README_fr.md)*
@@ -20,20 +21,9 @@ Droppy is a self-hosted file storage server with a web interface and capabilitie
 
 **Shipped version:** 12.2.0~ynh10
 
-
 ## Screenshots
 
 ![Screenshot of Droppy](./doc/screenshots/screenshot.png)
-
-## Disclaimers / important information
-
-Development of Droppy has been abandoned by its author, and its repository has been archived. Expect no future updates nor security fixes.
-
-## Configuration
-
-How to configure this app: a JSON configuration file with SSH. `/var/www/droppy/config/config.json`.  
-Shared files are stored in the following directory: `/home/yunohost.app/droppy/files`
-
 
 ## Documentation and resources
 

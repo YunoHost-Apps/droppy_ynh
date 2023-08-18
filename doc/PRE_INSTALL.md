@@ -1,0 +1,1 @@
+Development of Droppy has been abandoned by its author, and its repository has been archived. Expect no future updates nor security fixes.

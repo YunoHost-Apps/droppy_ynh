@@ -1,0 +1,54 @@
+packaging_format = 2
+
+id = "droppy"
+name = "Droppy"
+description.en = "File storage server"
+description.fr = "Serveur de stockage de fichiers"
+
+version = "12.2.0~ynh10"
+
+maintainers = ["eric_G"]
+
+[upstream]
+license = "BSD-2-Clause"
+code = "https://github.com/silverwind/droppy"
+
+[integration]
+yunohost = ">= 11.2"
+architectures = "all"
+multi_instance = false
+ldap = false
+sso = false
+disk = "50M"
+ram.build = "50M"
+ram.runtime = "50M"
+
+[install]
+    [install.domain]
+    type = "domain"
+
+    [install.path]
+    type = "path"
+    default = "/droppy"
+
+    [install.init_main_permission]
+    help.en = "If enabled, Droppy will be accessible by people who do not have an account. This can be changed later via the webadmin."
+    help.fr = "Si cette case est cochée, Droppy sera accessible aux personnes n’ayant pas de compte. Vous pourrez changer ceci plus tard via la webadmin."
+    type = "group"
+    default = "visitors"
+
+[resources]
+        [resources.sources.main]
+        url = "https://github.com/silverwind/droppy/archive/12.2.0.tar.gz"
+        sha256 = "6bdb9f9e629d942c81b4228ba3b49749ddf5e2b7e3c484540adb4196c43efc44"
+
+    [resources.system_user]
+
+    [resources.install_dir]
+
+    [resources.ports]
+
+    [resources.data_dir]
+
+    [resources.permissions]
+    main.url = "/"

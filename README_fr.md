@@ -5,38 +5,29 @@ It shall NOT be edited by hand.
 
 # Droppy pour YunoHost
 
-[![Niveau d'intégration](https://dash.yunohost.org/integration/droppy.svg)](https://dash.yunohost.org/appci/app/droppy) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/droppy.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/droppy.maintain.svg)  
+[![Niveau d’intégration](https://dash.yunohost.org/integration/droppy.svg)](https://dash.yunohost.org/appci/app/droppy) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/droppy.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/droppy.maintain.svg)
+
 [![Installer Droppy avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=droppy)
 
 *[Read this readme in english.](./README.md)*
 
-> *Ce package vous permet d'installer Droppy rapidement et simplement sur un serveur YunoHost.
-Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour savoir comment l'installer et en profiter.*
+> *Ce package vous permet d’installer Droppy rapidement et simplement sur un serveur YunoHost.
+Si vous n’avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour savoir comment l’installer et en profiter.*
 
-## Vue d'ensemble
+## Vue d’ensemble
 
 Droppy est un serveur de stockage de fichiers auto-hébergé avec une interface Web et des capacités pour éditer des fichiers et afficher des médias directement dans le navigateur.
 
 
-**Version incluse :** 12.2.0~ynh10
+**Version incluse :** 12.2.0~ynh10
 
+## Captures d’écran
 
-## Captures d'écran
-
-![Capture d'écran de Droppy](./doc/screenshots/screenshot.png)
-
-## Avertissements / informations importantes
-
-Le développement de Droppy a été abandonné par son auteur, et son dépôt de code a été archivé. N'attendez pas de future mise à jour, ni correctifs de sécurité.
-
-## Configuration
-
-Comment configurer cette application : un fichier de configuration `/var/www/droppy/config/config.json` en SSH.  
-Les fichiers partagés sont stockés dans le répertoire suivant : `/home/yunohost.app/droppy/files/`
+![Capture d’écran de Droppy](./doc/screenshots/screenshot.png)
 
 ## Documentations et ressources
 
-* Dépôt de code officiel de l'app : <https://github.com/silverwind/droppy>
+* Dépôt de code officiel de l’app : <https://github.com/silverwind/droppy>
 * Documentation YunoHost pour cette app : <https://yunohost.org/app_droppy>
 * Signaler un bug : <https://github.com/YunoHost-Apps/droppy_ynh/issues>
 
@@ -52,4 +43,4 @@ ou
 sudo yunohost app upgrade droppy -u https://github.com/YunoHost-Apps/droppy_ynh/tree/testing --debug
 ```
 
-**Plus d'infos sur le packaging d'applications :** <https://yunohost.org/packaging_apps>
+**Plus d’infos sur le packaging d’applications :** <https://yunohost.org/packaging_apps>
