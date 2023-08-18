@@ -5,7 +5,8 @@ It shall NOT be edited by hand.
 
 # Droppy for YunoHost
 
-[![Integration level](https://dash.yunohost.org/integration/droppy.svg)](https://dash.yunohost.org/appci/app/droppy) ![Working status](https://ci-apps.yunohost.org/ci/badges/droppy.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/droppy.maintain.svg)  
+[![Integration level](https://dash.yunohost.org/integration/droppy.svg)](https://dash.yunohost.org/appci/app/droppy) ![Working status](https://ci-apps.yunohost.org/ci/badges/droppy.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/droppy.maintain.svg)
+
 [![Install Droppy with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=droppy)
 
 *[Lire ce readme en français.](./README_fr.md)*
@@ -19,7 +20,6 @@ Droppy is a self-hosted file storage server with a web interface and capabilitie
 
 
 **Shipped version:** 12.2.0~ynh10
-
 
 ## Screenshots
 
