@@ -12,7 +12,6 @@ maintainers = ["eric_G"]
 [upstream]
 license = "BSD-2-Clause"
 code = "https://github.com/silverwind/droppy"
-website = "https://github.com/silverwind/droppy"
 
 [integration]
 yunohost = ">= 11.2"
