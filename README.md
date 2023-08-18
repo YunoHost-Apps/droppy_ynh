@@ -27,7 +27,6 @@ Droppy is a self-hosted file storage server with a web interface and capabilitie
 
 ## Documentation and resources
 
-* Official app website: <https://github.com/silverwind/droppy>
 * Upstream app code repository: <https://github.com/silverwind/droppy>
 * YunoHost documentation for this app: <https://yunohost.org/app_droppy>
 * Report a bug: <https://github.com/YunoHost-Apps/droppy_ynh/issues>
